@@ -15,10 +15,11 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
 
     // Create initial object
-    // const objArray = [];
+    // const objArray = {};
     // const timestamp = new Date();
     // const obj = { dateTime: timestamp.toGMTString(), data: {} };
-    // objArray.push(obj);
+    // objArray['data'] = [];
+    // objArray.data.push(obj);
     // storeData(JSON.stringify(objArray), 'logs.json');
     res.send('Hello World!').end();
 });
@@ -32,10 +33,12 @@ app.post("/hook", (req, res) => {
         const dataObj = JSON.parse(logs);
         const timestamp = new Date();
         const obj = { dateTime: timestamp.toGMTString(), data: req.body };
-        dataObj.push(obj);
+        dataObj.data.push(obj);
         // console.log(dataObj);
 
-        storeData( JSON.stringify(dataObj), 'logs.json');
+        const file = JSON.stringify(dataObj);
+
+        storeData( file, 'logs.json');
         res.status(200).end() // Responding is important
     } catch (err) {
         console.log('Read file error');
