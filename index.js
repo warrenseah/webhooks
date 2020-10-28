@@ -7,7 +7,7 @@ const logs = require('./logs.json');
 
 // Initialize express and define a port
 const app = express();
-const PORT = 3000;
+const PORT = 3004;
 
 // Tell express to use body-parser's JSON parsing
 app.use(bodyParser.json());
