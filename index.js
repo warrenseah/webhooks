@@ -35,7 +35,7 @@ app.post("/hook", (req, res) => {
         logs.data.push(obj);
 
         storeData( logs, 'logs.json');
-        res.status(200).end() // Responding is important
+        res.status(200).send("Message well received!").end() // Responding is important
     } catch (err) {
         console.log('Read file error');
         console.log(err);
