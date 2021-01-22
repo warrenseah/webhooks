@@ -30,15 +30,11 @@ app.post("/hook", (req, res) => {
     try {
         // console.log(req.body) // Call your action on the request here
 
-        const dataObj = JSON.parse(logs);
         const timestamp = new Date();
         const obj = { dateTime: timestamp.toGMTString(), data: req.body };
-        dataObj.data.push(obj);
-        // console.log(dataObj);
+        logs.data.push(obj);
 
-        const file = JSON.stringify(dataObj);
-
-        storeData( file, 'logs.json');
+        storeData( logs, 'logs.json');
         res.status(200).end() // Responding is important
     } catch (err) {
         console.log('Read file error');
